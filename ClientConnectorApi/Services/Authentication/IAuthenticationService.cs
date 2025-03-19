@@ -5,6 +5,6 @@ namespace ClientConnectorApi.Services.Authentication
 {
     public interface IAuthenticationService
     {
-        Task<string> AuthenticateAsync(UserAuthenticationDTO authenticationDto);
+        Task<TokenDTO> AuthenticateAsync(UserAuthenticationDTO authenticationDto);
     }
 }

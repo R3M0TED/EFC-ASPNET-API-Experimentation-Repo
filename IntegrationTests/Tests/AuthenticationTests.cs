@@ -13,21 +13,21 @@ namespace IntegrationTests.Tests
             var password = Guid.NewGuid().ToString();
 
             var registrationDto = new UserRegistrationDTO(username, "DisplayName", "Email", "Address", password);
-            await Client.PostAsync("/api/Registration", ConvertToJson(registrationDto));
+            await Client.PostAsync("/api/Registration", SerializeObject(registrationDto));
 
             var authenticationDto = new UserAuthenticationDTO(username, password);
-            var response = await Client.PostAsync("/api/Authentication", ConvertToJson(registrationDto));
+            var response = await Client.PostAsync("/api/Authentication", SerializeObject(registrationDto));
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
 
         [Test]
-        public async Task UserCantAuthenticateWithInvalidCredentials()
+        public async Task UserCannotAuthenticateWithInvalidCredentials()
         {
             var username = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
 
             var authenticationDto = new UserAuthenticationDTO(username, password);
-            var response = await Client.PostAsync("/api/Authentication", ConvertToJson(authenticationDto));
+            var response = await Client.PostAsync("/api/Authentication", SerializeObject(authenticationDto));
 
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Unauthorized));
         }

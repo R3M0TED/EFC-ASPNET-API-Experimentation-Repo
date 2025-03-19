@@ -17,7 +17,7 @@ namespace ClientConnectorApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<UserDTO>> RegisterUserAsync(UserRegistrationDTO registerationDto)
+        public async Task<ActionResult<UserDTO>> RegisterUserAsync([FromBody] UserRegistrationDTO registerationDto)
         {
             return await RunOperationWithExceptionsAsync(async () =>
             {

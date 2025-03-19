@@ -12,19 +12,19 @@ namespace IntegrationTests.Tests
             var username = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var registrationDto = new UserRegistrationDTO(username, "DisplayName", "Email", "Address", password);
-            var response = await Client.PostAsync("/api/Registration", ConvertToJson(registrationDto));
+            var response = await Client.PostAsync("/api/Registration", SerializeObject(registrationDto));
 
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
 
         [Test]
-        public async Task CannotRegisterWithExistingUsername()
+        public async Task UserCannotRegisterWithAnExistingUsername()
         {
             var username = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var registrationDto = new UserRegistrationDTO(username, "DisplayName", "Email", "Address", password);
-            var response = await Client.PostAsync("/api/Registration", ConvertToJson(registrationDto));
-            response = await Client.PostAsync("/api/Registration", ConvertToJson(registrationDto));
+            var response = await Client.PostAsync("/api/Registration", SerializeObject(registrationDto));
+            response = await Client.PostAsync("/api/Registration", SerializeObject(registrationDto));
 
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Conflict));
         }

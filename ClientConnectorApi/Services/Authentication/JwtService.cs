@@ -1,4 +1,5 @@
 ﻿using ClientConnectorApi.Configurations;
+using ClientConnectorApi.Dtos.Responses;
 using ClientConnectorApi.Exceptions;
 using MessagingDomain;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -21,7 +22,7 @@ namespace ClientConnectorApi.Services.Authentication
             _key = Encoding.UTF8.GetBytes(_jwtSettings.Secret);
         }
 
-        public string GenerateAccessToken(User user)
+        public TokenDTO GenerateAccessToken(User user)
         {
             var token = new JwtSecurityToken(
                 issuer: _jwtSettings.Issuer,
@@ -31,7 +32,7 @@ namespace ClientConnectorApi.Services.Authentication
                 signingCredentials: new SigningCredentials(new SymmetricSecurityKey(_key), SecurityAlgorithms.HmacSha256)
             );
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return new TokenDTO(new JwtSecurityTokenHandler().WriteToken(token), DateTime.UtcNow.AddMinutes(_jwtSettings.ExpirationMinutes));
         }
 
         private IEnumerable<Claim> GetClaims(User user) => new List<Claim>

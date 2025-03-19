@@ -8,7 +8,7 @@ namespace IntegrationTests.Tests
     {
         protected HttpClient Client => SetupFixture.Client;
 
-        protected StringContent ConvertToJson<T>(T obj)
+        protected StringContent SerializeObject<T>(T obj)
         {
             return new StringContent(JsonSerializer.Serialize(obj), Encoding.UTF8, "application/json");
         }

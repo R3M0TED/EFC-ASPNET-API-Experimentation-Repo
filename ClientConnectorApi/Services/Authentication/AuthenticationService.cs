@@ -3,6 +3,7 @@ using MessaingData;
 using Microsoft.EntityFrameworkCore;
 using ClientConnectorApi.Exceptions;
 using MessagingDomain;
+using ClientConnectorApi.Dtos.Responses;
 
 namespace ClientConnectorApi.Services.Authentication
 {
@@ -16,10 +17,11 @@ namespace ClientConnectorApi.Services.Authentication
             _jwtService = jwtService;
         }
 
-        public async Task<string> AuthenticateAsync(UserAuthenticationDTO authenticationDto)
+        public async Task<TokenDTO> AuthenticateAsync(UserAuthenticationDTO authenticationDto)
         {
             var userEntity = await TryAuthenticateAsync(authenticationDto);
             var token = _jwtService.GenerateAccessToken(userEntity);
+
             return token;
         }
 

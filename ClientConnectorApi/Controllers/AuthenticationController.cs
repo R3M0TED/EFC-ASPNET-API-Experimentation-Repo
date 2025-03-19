@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ClientConnectorApi.Dtos.Requests;
 using ClientConnectorApi.Services.Authentication;
+using ClientConnectorApi.Dtos.Responses;
 
 namespace ClientConnectorApi.Controllers
 {
@@ -17,7 +18,7 @@ namespace ClientConnectorApi.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<string>> AuthenticateAsync(UserAuthenticationDTO authenticationDto)
+        public async Task<ActionResult<TokenDTO>> AuthenticateAsync([FromBody] UserAuthenticationDTO authenticationDto)
         {
             return await RunOperationWithExceptionsAsync(async () =>
             {
