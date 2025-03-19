@@ -1,0 +1,7 @@
+﻿{
+  "TestSettings": {
+    "ConnectionString": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ApiIntegrationTestsDb",
+    "DeleteDatabase": false
+  }
+}
+
