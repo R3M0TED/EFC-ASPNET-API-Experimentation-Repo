@@ -4,7 +4,7 @@ namespace ClientConnectorApi.Dtos.Responses
 {
     public record UserDataDTO(
         int userDataId,
-        string DisplayName,
+        string displayName,
         string email,
         string address)
     {

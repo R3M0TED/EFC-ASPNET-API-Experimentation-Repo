@@ -3,8 +3,8 @@
 namespace ClientConnectorApi.Dtos.Responses
 {
     public record UserDTO(
-        int UserId,
-        string Username,
+        int userId,
+        string username,
         UserDataDTO userData)
     {
         public UserDTO(User userEntity) 
