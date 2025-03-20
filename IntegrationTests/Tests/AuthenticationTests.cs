@@ -1,6 +1,4 @@
 using ClientConnectorApi.Dtos.Requests;
-using ClientConnectorApi.Dtos.Responses;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
